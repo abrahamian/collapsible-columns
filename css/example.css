@@ -1,0 +1,106 @@
+#example {
+  position: relative;
+  width: 50%;
+  height: 40%;
+  overflow: hidden;
+  display: inline-block;
+}
+#example * {
+  box-sizing: border-box;
+}
+#example header {
+  height: 60px;
+  width: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.1);
+}
+#example .column {
+  height: 100%;
+  padding-top: 60px;
+}
+#example .middle-column {
+  background: white;
+  position: absolute;
+  width: 100%;
+}
+#example .toggle-button {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: 3px solid black;
+}
+#example .left-column {
+  background: blue;
+}
+#example .left-column .toggle-button {
+  border-color: blue;
+  color: blue;
+  float: right;
+  margin-top: 10px;
+  margin-right: -40px;
+}
+#example .right-column {
+  background: orange;
+}
+#example .right-column .toggle-button {
+  border-color: orange;
+  color: orange;
+  float: left;
+  margin-top: 10px;
+  margin-left: -40px;
+}
+#example .left-column {
+  position: relative;
+  float: left;
+}
+#example.left-column-expanded .left-column {
+  width: 150px;
+}
+#example.left-column-expanded .hide-when-left-column-expanded {
+  display: none;
+}
+#example.left-column-expanded .middle-column {
+  padding-left: 150px;
+}
+#example:not(.left-column-expanded) .left-column {
+  width: 30px;
+}
+#example:not(.left-column-expanded) .hide-when-left-column-collapsed {
+  display: none;
+}
+#example:not(.left-column-expanded) .middle-column {
+  padding-left: 30px;
+}
+#example .right-column {
+  position: relative;
+  float: right;
+}
+#example.right-column-expanded .right-column {
+  width: 30%;
+}
+#example.right-column-expanded .hide-when-right-column-expanded {
+  display: none;
+}
+#example.right-column-expanded .middle-column {
+  padding-right: 30%;
+}
+#example:not(.right-column-expanded) .right-column {
+  width: 10%;
+}
+#example:not(.right-column-expanded) .hide-when-right-column-collapsed {
+  display: none;
+}
+#example:not(.right-column-expanded) .middle-column {
+  padding-right: 10%;
+}
+#example header {
+  z-index: 3;
+}
+#example .collapsible-column {
+  z-index: 2;
+}
+#example .middle-column {
+  z-index: 1;
+}
+
+/*# sourceMappingURL=example.css.map */

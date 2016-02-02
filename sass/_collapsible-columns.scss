@@ -1,0 +1,47 @@
+@mixin collapsible-column($config){
+
+  $column-class: map-get($config, class);
+  $column-float: map-get($config, float);
+  $collapsed-width: map-get(map-get($config, collapsed), width);
+  $expanded-width: map-get(map-get($config, expanded), width);
+  $class-of-parent-when-expanded: map-get(map-get($config, expanded), parent-class);
+  $class-to-hide-when-expanded: map-get(map-get($config, expanded), class-to-hide);
+  $class-to-hide-when-collapsed: map-get(map-get($config, collapsed), class-to-hide);
+  $sibling-class: map-get(map-get($config, sibling), class);
+  $sibling-attribute: map-get(map-get($config, sibling), attribute);
+
+  .#{$column-class} {
+    position: relative;
+    float: #{$column-float} ;
+  }
+
+  &.#{$class-of-parent-when-expanded} {
+    .#{$column-class} {
+      width: $expanded-width;
+    }
+
+    .#{$class-to-hide-when-expanded} {
+      display: none;
+    }
+
+    .#{$sibling-class} {
+      #{$sibling-attribute} : $expanded-width;
+    }
+  }
+
+  &:not(.#{$class-of-parent-when-expanded}){
+    .#{$column-class} {
+      width: $collapsed-width;
+    }
+
+    .#{$class-to-hide-when-collapsed} {
+      display: none;
+    }
+
+    .#{$sibling-class} {
+      #{$sibling-attribute} : $collapsed-width;
+    }
+
+  }
+
+}

@@ -1,0 +1,103 @@
+#example {
+  @import "variables";
+  @import "collapsible-columns";
+
+  * { box-sizing: border-box; }
+
+  position: relative;
+  width: 50%;
+  height: 40%;
+  overflow: hidden;
+  display:inline-block;
+
+  header {
+    height: $header-height;
+    width: $header-width;
+    position: absolute;
+    background: $header-background;
+  }
+
+  .column {
+    height: $column-height;
+    padding-top: $header-height;
+  }
+
+  .middle-column {
+    background: $middle-column-background;
+    position: absolute;
+    width: 100%;
+  }
+
+  .toggle-button {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: 3px solid black;
+  }
+
+  .left-column {
+    background: $left-column-background;
+    .toggle-button {
+      border-color: $left-column-background;
+      color: $left-column-background;
+      float: right;
+      margin-top: 10px;
+      margin-right: -40px;
+    }
+  }
+  .right-column {
+    background: $right-column-background;
+    .toggle-button {
+      border-color: $right-column-background;
+      color: $right-column-background;
+      float: left;
+      margin-top: 10px;
+      margin-left: -40px;
+    }
+  }
+
+  @include collapsible-column(
+    (
+      class: "left-column",
+      float: left,
+      collapsed: (
+        class-to-hide: "hide-when-left-column-collapsed",
+        width: $left-column-collapsed-width
+      ),
+      expanded: (
+        parent-class: "left-column-expanded",
+        class-to-hide: "hide-when-left-column-expanded",
+        width: $left-column-expanded-width
+      ),
+      sibling: (
+        class: "middle-column",
+        attribute: "padding-left"
+      )
+    )
+  );
+
+  @include collapsible-column(
+    (
+      class: "right-column",
+      float: right,
+      collapsed: (
+        class-to-hide: "hide-when-right-column-collapsed",
+        width: $right-column-collapsed-width
+      ),
+      expanded: (
+        parent-class: "right-column-expanded",
+        class-to-hide: "hide-when-right-column-expanded",
+        width: $right-column-expanded-width
+      ),
+      sibling: (
+        class: "middle-column",
+        attribute: "padding-right"
+      )
+    )
+  );
+
+  header { z-index: 3; }
+  .collapsible-column { z-index:2; }
+  .middle-column { z-index:1; }
+
+}
