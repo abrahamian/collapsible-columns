@@ -1,0 +1,59 @@
+@mixin left-column-is-expanded(){
+  .left-column { width: $left-column-expanded-width; }
+  .middle-column { padding-left: $left-column-expanded-width; }
+
+  .left-column { @include arrow(toggle-button, $toggle-button-size, 5px, $middle-column-background, left, $toggle-button-color); }
+}
+
+@mixin left-column-is-collapsed(){
+  .left-column { width: $left-column-collapsed-width; }
+  .middle-column { padding-left: $left-column-collapsed-width; }
+
+  .left-column { @include arrow(toggle-button, $toggle-button-size, 5px, $left-column-background, right, $toggle-button-color); }
+}
+
+@mixin right-column-is-expanded(){
+  .right-column { width: $right-column-expanded-width; }
+  .middle-column { padding-right: $right-column-expanded-width; }
+
+  .right-column { @include arrow(toggle-button, $toggle-button-size, 5px, $middle-column-background, right, $toggle-button-color); }
+}
+
+@mixin right-column-is-collapsed(){
+  .right-column { width: $right-column-collapsed-width; }
+  .middle-column { padding-right: $right-column-collapsed-width; }
+
+  .right-column { @include arrow(toggle-button, $toggle-button-size, 5px, $right-column-background, left, $toggle-button-color); }
+}
+
+@mixin header-is-collapsed(){
+  header { height: $header-collapsed-height; }
+  .column { padding-top: $header-collapsed-height; }
+
+  header .toggle-button-container { top: 100%; }
+  header { @include arrow(toggle-button, $toggle-button-size, 5px, $header-background, down, $toggle-button-color); }  
+}
+
+@mixin header-is-expanded(){
+  header { height: $header-expanded-height; }
+  .column { padding-top: $header-expanded-height; }
+
+  header .toggle-button-container { bottom: 0; }
+  header { @include arrow(toggle-button, $toggle-button-size, 5px, $middle-column-background, up, $toggle-button-color); }
+}
+
+@mixin footer-is-expanded(){
+  footer { height: $footer-expanded-height; }
+  .column { padding-bottom: $footer-expanded-height; }
+
+  footer .toggle-button-container { top: 0; }
+  footer { @include arrow(toggle-button, $toggle-button-size, 5px, $middle-column-background, down, $toggle-button-color); }  
+}
+
+@mixin footer-is-collapsed(){
+  footer {height: $footer-collapsed-height;}  
+  .column { padding-bottom: $footer-collapsed-height; }
+
+  footer .toggle-button-container { bottom: 100%;  }
+  footer { @include arrow(toggle-button, $toggle-button-size, 5px, $footer-background, up, $toggle-button-color); }  
+}

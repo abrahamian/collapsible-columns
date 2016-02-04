@@ -1,0 +1,43 @@
+// From Lisa B's answer on stackoverflow: http://stackoverflow.com/a/32229335/3723566
+
+@mixin arrow($class, $size, $weight, $color, $dir, $bg) {
+    @if $dir == up {
+        $dir : bottom;
+    }
+    @elseif $dir == down {
+        $dir : top;
+    }
+    @elseif $dir == right {
+        $dir : left;
+    } 
+    @else {
+        $dir : right;
+    }
+
+   .#{$class} {
+       position:relative;
+       display:block;
+       height: $size * 2;
+    }
+
+   .#{$class}:before,
+   .#{$class}:after {
+       position:absolute;
+       display:block;
+       content:"";
+       /*Size*/
+       border:$size solid transparent;
+    }
+
+    .#{$class}:before {
+        #{$dir}:0;
+        /*Arrow Color*/
+        border-#{$dir}-color:$color;
+    }
+
+   .#{$class}:after {
+      /*Thickness*/
+      #{$dir}:-$weight;
+      border-#{$dir}-color:$bg;
+   }
+}

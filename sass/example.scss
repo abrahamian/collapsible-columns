@@ -1,8 +1,4 @@
 #example {
-  @import "variables";
-  @import "collapsible-columns";
-
-  * { box-sizing: border-box; }
 
   position: relative;
   width: 50%;
@@ -10,94 +6,98 @@
   overflow: hidden;
   display:inline-block;
 
-  header {
-    height: $header-height;
-    width: $header-width;
-    position: absolute;
-    background: $header-background;
+  * { box-sizing: border-box; }
+
+  @import "variables";
+
+  .left-column {
+    z-index: 2;
+    height: $column-height;
+    background: $left-column-background;
+    position: relative;
+    float: left;
   }
 
-  .column {
+  .right-column {
+    z-index: 2;
     height: $column-height;
-    padding-top: $header-height;
+    background: $right-column-background;
+    position: relative;
+    float: right;
   }
 
   .middle-column {
+    z-index: 1;
+    height: $column-height;
     background: $middle-column-background;
     position: absolute;
     width: 100%;
   }
 
-  .toggle-button {
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: 3px solid black;
-  }
-
-  .left-column {
-    background: $left-column-background;
-    .toggle-button {
-      border-color: $left-column-background;
-      color: $left-column-background;
-      float: right;
-      margin-top: 10px;
-      margin-right: -40px;
+  .right-column , .left-column {
+    .toggle-button-container {
+      position: relative;
+      top: 50%;
+      margin-top: -$toggle-button-height;
     }
   }
-  .right-column {
-    background: $right-column-background;
-    .toggle-button {
-      border-color: $right-column-background;
-      color: $right-column-background;
+
+  .left-column .toggle-button-container { 
+    float: left;
+    right: -100%;
+  }
+
+  .right-column .toggle-button-container {
+    float:right;
+    left: -100%;
+  }
+
+  header {
+    z-index: 3; 
+    width: $header-width;
+    position: absolute;
+    background: $header-background;
+  }
+
+  footer {
+    z-index: 3; 
+    width: $footer-width;
+    position: absolute;
+    bottom: 0;
+    background: $footer-background;  
+  }
+
+  header, footer {
+    .toggle-button-container{
+      position: absolute;
+      left: 50%;
       float: left;
-      margin-top: 10px;
-      margin-left: -40px;
+      margin-left: -$toggle-button-width;
     }
   }
 
-  @include collapsible-column(
-    (
-      class: "left-column",
-      float: left,
-      collapsed: (
-        class-to-hide: "hide-when-left-column-collapsed",
-        width: $left-column-collapsed-width
-      ),
-      expanded: (
-        parent-class: "left-column-expanded",
-        class-to-hide: "hide-when-left-column-expanded",
-        width: $left-column-expanded-width
-      ),
-      sibling: (
-        class: "middle-column",
-        attribute: "padding-left"
-      )
-    )
-  );
+  .middle-column .content {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+  }
 
-  @include collapsible-column(
-    (
-      class: "right-column",
-      float: right,
-      collapsed: (
-        class-to-hide: "hide-when-right-column-collapsed",
-        width: $right-column-collapsed-width
-      ),
-      expanded: (
-        parent-class: "right-column-expanded",
-        class-to-hide: "hide-when-right-column-expanded",
-        width: $right-column-expanded-width
-      ),
-      sibling: (
-        class: "middle-column",
-        attribute: "padding-right"
-      )
-    )
-  );
+  @import 'arrow';
+  @import 'states';
 
-  header { z-index: 3; }
-  .collapsible-column { z-index:2; }
-  .middle-column { z-index:1; }
+  &.header-expanded { @include header-is-expanded; }
+  &:not(.header-expanded) { @include header-is-collapsed; }
+  &.footer-expanded { @include footer-is-expanded; }
+  &:not(.footer-expanded) { @include footer-is-collapsed; }
+  &.left-column-expanded { @include left-column-is-expanded; }
+  &:not(.left-column-expanded){ @include left-column-is-collapsed; }
+  &.right-column-expanded { @include right-column-is-expanded; }
+  &:not(.right-column-expanded){ @include right-column-is-collapsed; }
+
+  header, footer { transition: height $transition-length ease-in-out; }
+  .column {
+    transition: width $transition-length ease-in-out,
+                padding $transition-length ease-in-out,
+  }
 
 }

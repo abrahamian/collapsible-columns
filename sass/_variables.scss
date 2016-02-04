@@ -1,16 +1,28 @@
-$header-height: 60px;
+$header-expanded-height: 60px;
+$header-collapsed-height: 0;
 $header-width: 100%;
+$header-background: pink;
 
 $left-column-background: blue;
-$middle-column-background: white;
+$middle-column-background: green;
 $right-column-background: orange;
 
-$header-background: rgba(black, 0.1);
-
-$left-column-expanded-width: 150px;
-$left-column-collapsed-width: 30px;
+$left-column-expanded-width: 10%;
+$left-column-collapsed-width: 5%;
 
 $right-column-expanded-width: 30%;
 $right-column-collapsed-width: 10%;
 
 $column-height: 100%;
+
+$footer-expanded-height: 30px;
+$footer-collapsed-height: 0px;
+$footer-width: 100%;
+$footer-background: red;
+
+$toggle-button-size: 25px;
+$toggle-button-width: 25px;
+$toggle-button-height: 25px;
+$toggle-button-color: #fff;
+
+$transition-length: 0.3s;
