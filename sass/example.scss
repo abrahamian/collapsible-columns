@@ -76,12 +76,6 @@
     }
   }
 
-  .middle-column .content {
-    width: 100%;
-    height: 100%;
-    padding: 15px;
-  }
-
   @import 'arrow';
   @import 'states';
 
@@ -98,6 +92,13 @@
   .column {
     transition: width $transition-length ease-in-out,
                 padding $transition-length ease-in-out,
+  }
+
+  .middle-column .content {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    overflow-y: scroll;
   }
 
 }

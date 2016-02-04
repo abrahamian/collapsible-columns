@@ -6,18 +6,18 @@
 </head>
 <body>
 <body>
-  <div id="example" class="header-expanded footer-expanded">
+  <div id="example">
     
-    <header>
+    <header class="collapsible" data-collapsible="header">
       <div class="toggle-button-container">
-        <div class="toggle-button toggle-header">
+        <div class="toggle-button">
         </div>
       </div>
     </header>
 
-    <div class="column collapsible-column left-column">
+    <div class="collapsible column left-column" data-collapsible="left-column">
       <div class="toggle-button-container">
-        <div class="toggle-button toggle-left-column">
+        <div class="toggle-button">
         </div>
       </div>
 
@@ -31,19 +31,31 @@
         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </div>
     </div>
     
-    <div class="column collapsible-column right-column">
+    <div class="collapsible column right-column" data-collapsible="right-column">
       <div class="toggle-button-container">
-        <div class="toggle-button toggle-right-column">
+        <div class="toggle-button">
         </div>
       </div>
     </div>
 
-    <footer>
+    <footer class="collapsible" data-collapsible="footer">
       <div class="toggle-button-container">
-        <div class="toggle-button toggle-footer">
+        <div class="toggle-button">
         </div>
       </div>
     </footer>
@@ -51,26 +63,11 @@
   </div>
 
   <script type="text/javascript">
-    $('.toggle-left-column')
+    $('.toggle-button')
       .click( function() {
-        $('#example').toggleClass('left-column-expanded');
+        var collapsible = $(this).closest('.collapsible').data('collapsible');
+        $('#example').toggleClass(collapsible + '-expanded');
       });
-
-    $('.toggle-right-column')
-      .click( function() {
-        $('#example').toggleClass('right-column-expanded');
-      });
-
-    $('.toggle-header')
-      .click( function() {
-        $('#example').toggleClass('header-expanded');
-      });
-
-    $('.toggle-footer')
-      .click( function() {
-        $('#example').toggleClass('footer-expanded');
-      });
-
 
   </script>
 

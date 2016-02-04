@@ -61,11 +61,6 @@
   float: left;
   margin-left: -25px;
 }
-#example .middle-column .content {
-  width: 100%;
-  height: 100%;
-  padding: 15px;
-}
 #example.header-expanded header {
   height: 60px;
 }
@@ -315,6 +310,12 @@
 }
 #example .column {
   transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+#example .middle-column .content {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  overflow-y: scroll;
 }
 
 /*# sourceMappingURL=example.css.map */
