@@ -1,74 +1,112 @@
+body {
+  margin: 0;
+}
+
 #example {
   position: relative;
   width: 50%;
-  height: 40%;
+  height: 50%;
   overflow: hidden;
   display: inline-block;
 }
 #example * {
   box-sizing: border-box;
 }
-#example .left-column {
-  z-index: 2;
-  height: 100%;
-  background: blue;
-  position: relative;
-  float: left;
-}
-#example .right-column {
-  z-index: 2;
-  height: 100%;
-  background: orange;
-  position: relative;
-  float: right;
-}
-#example .middle-column {
-  z-index: 1;
-  height: 100%;
-  background: green;
-  position: absolute;
+#example .row {
   width: 100%;
 }
-#example .right-column .toggle-button-container, #example .left-column .toggle-button-container {
-  position: relative;
-  top: 50%;
-  margin-top: -25px;
-}
-#example .left-column .toggle-button-container {
-  float: left;
-  right: -100%;
-}
-#example .right-column .toggle-button-container {
-  float: right;
-  left: -100%;
+#example header, #example footer {
+  z-index: 3;
+  position: absolute;
 }
 #example header {
-  z-index: 3;
-  width: 100%;
-  position: absolute;
   background: pink;
+  top: 0;
 }
 #example footer {
-  z-index: 3;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
   background: red;
+  bottom: 0;
 }
-#example header .toggle-button-container, #example footer .toggle-button-container {
-  position: absolute;
-  left: 50%;
+#example .column {
+  height: 100%;
+}
+#example .left-column, #example .right-column {
+  position: relative;
+  z-index: 2;
+}
+#example .left-column {
   float: left;
-  margin-left: -25px;
+  background: blue;
+}
+#example .right-column {
+  float: right;
+  background: orange;
+}
+#example .middle-column {
+  position: absolute;
+  z-index: 1;
+  background: green;
+}
+#example .responds {
+  height: 100%;
+  width: 100%;
+}
+#example .middle-column .content {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  overflow-y: scroll;
+}
+#example.left-column-expanded .left-column {
+  width: 28%;
+}
+#example.left-column-expanded .responds-horizontally {
+  padding-left: 28%;
+}
+#example:not(.left-column-expanded) .left-column {
+  width: 15%;
+}
+#example:not(.left-column-expanded) .responds-horizontally {
+  padding-left: 15%;
+}
+#example.right-column-expanded .right-column {
+  width: 30%;
+}
+#example.right-column-expanded .responds-horizontally {
+  padding-right: 30%;
+}
+#example:not(.right-column-expanded) .right-column {
+  width: 10%;
+}
+#example:not(.right-column-expanded) .responds-horizontally {
+  padding-right: 10%;
 }
 #example.header-expanded header {
   height: 60px;
 }
-#example.header-expanded .column {
+#example.header-expanded .responds-vertically {
   padding-top: 60px;
 }
-#example.header-expanded header .toggle-button-container {
-  bottom: 0;
+#example:not(.header-expanded) header {
+  height: 0;
+}
+#example:not(.header-expanded) .responds-vertically {
+  padding-top: 0;
+}
+#example.footer-expanded footer {
+  height: 30px;
+}
+#example.footer-expanded .responds-vertically {
+  padding-bottom: 30px;
+}
+#example:not(.footer-expanded) footer {
+  height: 0px;
+}
+#example:not(.footer-expanded) .responds-vertically {
+  padding-bottom: 0px;
+}
+#example .responds, #example .expands, #example .collapses {
+  transition: height 0.3s ease-in-out, width 0.3s ease-in-out, padding 0.3s ease-in-out;
 }
 #example.header-expanded header .toggle-button {
   position: relative;
@@ -93,15 +131,6 @@
   bottom: -5px;
   border-bottom-color: #fff;
 }
-#example:not(.header-expanded) header {
-  height: 0;
-}
-#example:not(.header-expanded) .column {
-  padding-top: 0;
-}
-#example:not(.header-expanded) header .toggle-button-container {
-  top: 100%;
-}
 #example:not(.header-expanded) header .toggle-button {
   position: relative;
   display: block;
@@ -125,14 +154,8 @@
   top: -5px;
   border-top-color: #fff;
 }
-#example.footer-expanded footer {
-  height: 30px;
-}
-#example.footer-expanded .column {
-  padding-bottom: 30px;
-}
-#example.footer-expanded footer .toggle-button-container {
-  top: 0;
+#example:not(.header-expanded) header .toggle-button-container {
+  top: 100%;
 }
 #example.footer-expanded footer .toggle-button {
   position: relative;
@@ -157,15 +180,6 @@
   top: -5px;
   border-top-color: #fff;
 }
-#example:not(.footer-expanded) footer {
-  height: 0px;
-}
-#example:not(.footer-expanded) .column {
-  padding-bottom: 0px;
-}
-#example:not(.footer-expanded) footer .toggle-button-container {
-  bottom: 100%;
-}
 #example:not(.footer-expanded) footer .toggle-button {
   position: relative;
   display: block;
@@ -189,11 +203,8 @@
   bottom: -5px;
   border-bottom-color: #fff;
 }
-#example.left-column-expanded .left-column {
-  width: 10%;
-}
-#example.left-column-expanded .middle-column {
-  padding-left: 10%;
+#example:not(.footer-expanded) footer .toggle-button-container {
+  bottom: 100%;
 }
 #example.left-column-expanded .left-column .toggle-button {
   position: relative;
@@ -218,12 +229,6 @@
   right: -5px;
   border-right-color: #fff;
 }
-#example:not(.left-column-expanded) .left-column {
-  width: 5%;
-}
-#example:not(.left-column-expanded) .middle-column {
-  padding-left: 5%;
-}
 #example:not(.left-column-expanded) .left-column .toggle-button {
   position: relative;
   display: block;
@@ -246,12 +251,6 @@
   /*Thickness*/
   left: -5px;
   border-left-color: #fff;
-}
-#example.right-column-expanded .right-column {
-  width: 30%;
-}
-#example.right-column-expanded .middle-column {
-  padding-right: 30%;
 }
 #example.right-column-expanded .right-column .toggle-button {
   position: relative;
@@ -276,12 +275,6 @@
   left: -5px;
   border-left-color: #fff;
 }
-#example:not(.right-column-expanded) .right-column {
-  width: 10%;
-}
-#example:not(.right-column-expanded) .middle-column {
-  padding-right: 10%;
-}
 #example:not(.right-column-expanded) .right-column .toggle-button {
   position: relative;
   display: block;
@@ -305,17 +298,24 @@
   right: -5px;
   border-right-color: #fff;
 }
-#example header, #example footer {
-  transition: height 0.3s ease-in-out;
+#example .toggle-button-container {
+  position: absolute;
+  text-align: center;
 }
-#example .column {
-  transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+#example .right-column .toggle-button, #example .left-column .toggle-button {
+  top: 50%;
+  transform: translateY(-50%);
 }
-#example .middle-column .content {
-  width: 100%;
-  height: 100%;
-  padding: 15px;
-  overflow-y: scroll;
+#example .left-column .toggle-button {
+  float: right;
+}
+#example .right-column .toggle-button {
+  float: left;
+}
+#example header .toggle-button, #example footer .toggle-button {
+  display: inline-block !important;
+  position: static !important;
+  margin-left: -25px;
 }
 
 /*# sourceMappingURL=example.css.map */
