@@ -1,8 +1,10 @@
+body {margin: 0;}
+
 #example {
 
   position: relative;
   width: 50%;
-  height: 40%;
+  height: 50%;
   overflow: hidden;
   display:inline-block;
 
@@ -10,70 +12,100 @@
 
   @import "variables";
 
-  .left-column {
-    z-index: 2;
-    height: $column-height;
-    background: $left-column-background;
-    position: relative;
-    float: left;
-  }
-
-  .right-column {
-    z-index: 2;
-    height: $column-height;
-    background: $right-column-background;
-    position: relative;
-    float: right;
-  }
-
-  .middle-column {
-    z-index: 1;
-    height: $column-height;
-    background: $middle-column-background;
+  .row { width: 100%; }
+  
+  header, footer { 
+    z-index: 3;
     position: absolute;
-    width: 100%;
-  }
-
-  .right-column , .left-column {
-    .toggle-button-container {
-      position: relative;
-      top: 50%;
-      margin-top: -$toggle-button-height;
-    }
-  }
-
-  .left-column .toggle-button-container { 
-    float: left;
-    right: -100%;
-  }
-
-  .right-column .toggle-button-container {
-    float:right;
-    left: -100%;
   }
 
   header {
-    z-index: 3; 
-    width: $header-width;
-    position: absolute;
     background: $header-background;
+    top: 0;
   }
 
   footer {
-    z-index: 3; 
-    width: $footer-width;
-    position: absolute;
+    background: $footer-background;
     bottom: 0;
-    background: $footer-background;  
   }
 
-  header, footer {
-    .toggle-button-container{
-      position: absolute;
-      left: 50%;
-      float: left;
-      margin-left: -$toggle-button-width;
-    }
+  .column { height: 100%; }
+
+  .left-column, .right-column { 
+    position: relative;
+    z-index: 2;
+  }
+
+  .left-column {
+    float: left;
+    background: $left-column-background;  
+  }
+
+  .right-column {
+    float: right;
+    background: $right-column-background;
+  }
+
+  .middle-column {
+    position: absolute;
+    z-index: 1;
+    background: $middle-column-background;
+  }
+
+  .responds { height: 100%; width: 100%;}
+
+  .middle-column .content {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    overflow-y: scroll;
+  }
+
+  &.left-column-expanded {
+    .left-column { width: $left-column-expanded-width; }
+    .responds-horizontally { padding-left: $left-column-expanded-width; }
+  }
+
+  &:not(.left-column-expanded){
+    .left-column { width: $left-column-collapsed-width; }    
+    .responds-horizontally { padding-left: $left-column-collapsed-width; }
+  }
+
+  &.right-column-expanded {
+    .right-column { width: $right-column-expanded-width; }    
+    .responds-horizontally { padding-right: $right-column-expanded-width; }
+  }
+
+  &:not(.right-column-expanded) {
+    .right-column { width: $right-column-collapsed-width; }
+    .responds-horizontally { padding-right: $right-column-collapsed-width; }
+  }
+
+  &.header-expanded {
+    header { height: $header-expanded-height; }
+    .responds-vertically { padding-top: $header-expanded-height; }
+  }
+
+  &:not(.header-expanded) {
+    header { height: $header-collapsed-height; }
+    .responds-vertically { padding-top: $header-collapsed-height; }    
+  }
+
+  &.footer-expanded {
+
+    footer { height: $footer-expanded-height; }
+    .responds-vertically { padding-bottom: $footer-expanded-height; }
+  }
+
+  &:not(.footer-expanded){
+    footer {height: $footer-collapsed-height; }
+    .responds-vertically { padding-bottom: $footer-collapsed-height; }    
+  }
+  
+  .responds, .expands, .collapses {
+    transition: height $transition-length ease-in-out,
+                width $transition-length ease-in-out,
+                padding $transition-length ease-in-out;
   }
 
   @import 'arrow';
@@ -88,17 +120,27 @@
   &.right-column-expanded { @include right-column-is-expanded; }
   &:not(.right-column-expanded){ @include right-column-is-collapsed; }
 
-  header, footer { transition: height $transition-length ease-in-out; }
-  .column {
-    transition: width $transition-length ease-in-out,
-                padding $transition-length ease-in-out,
+  .toggle-button-container {
+    position: absolute;
+    text-align:center;
   }
 
-  .middle-column .content {
-    width: 100%;
-    height: 100%;
-    padding: 15px;
-    overflow-y: scroll;
+  .right-column , .left-column {
+    .toggle-button {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .left-column .toggle-button { float: right; }
+  .right-column .toggle-button { float: left; }
+
+  header, footer {
+    .toggle-button {
+      display: inline-block !important;
+      position: static !important;
+      margin-left: -$toggle-button-width;
+    }
   }
 
 }
