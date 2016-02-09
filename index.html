@@ -8,22 +8,22 @@
 <body>
   <div id="example">
     
-    <header class="collapsible" data-collapsible="header">
-      <div class="toggle-button-container">
+    <header class="row collapses expands" data-collapsible="header">
+      <div class="toggle-button-container responds responds-horizontally">
         <div class="toggle-button">
         </div>
       </div>
     </header>
 
-    <div class="collapsible column left-column" data-collapsible="left-column">
-      <div class="toggle-button-container">
+    <div class="collapses expands column left-column" data-collapsible="left-column">
+      <div class="toggle-button-container responds responds-vertically">
         <div class="toggle-button">
         </div>
       </div>
 
     </div>
 
-    <div class="column middle-column">
+    <div class="column middle-column responds responds-vertically responds-horizontally">
       <div class="content">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -46,15 +46,15 @@
       </div>
     </div>
     
-    <div class="collapsible column right-column" data-collapsible="right-column">
-      <div class="toggle-button-container">
+    <div class="collapses expands column right-column" data-collapsible="right-column">
+      <div class="toggle-button-container responds responds-vertically">
         <div class="toggle-button">
         </div>
       </div>
     </div>
 
-    <footer class="collapsible" data-collapsible="footer">
-      <div class="toggle-button-container">
+    <footer class="row collapses expands" data-collapsible="footer">
+      <div class="toggle-button-container responds responds-horizontally">
         <div class="toggle-button">
         </div>
       </div>
@@ -65,7 +65,7 @@
   <script type="text/javascript">
     $('.toggle-button')
       .click( function() {
-        var collapsible = $(this).closest('.collapsible').data('collapsible');
+        var collapsible = $(this).closest('.collapses.expands').data('collapsible');
         $('#example').toggleClass(collapsible + '-expanded');
       });
 
