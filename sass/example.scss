@@ -1,3 +1,5 @@
+@import 'transition';
+
 body {margin: 0;}
 
 #example {
@@ -103,9 +105,14 @@ body {margin: 0;}
   }
   
   .responds, .expands, .collapses {
-    transition: height $transition-length ease-in-out,
-                width $transition-length ease-in-out,
-                padding $transition-length ease-in-out;
+    // transition: height $transition-length ease-in-out,
+    //             width $transition-length ease-in-out,
+    //             padding $transition-length ease-in-out;
+
+    @include transition(height $transition-length ease-in-out, width $transition-length ease-in-out, padding $transition-length ease-in-out);
+    // @include transition(width $transition-length ease-in-out);
+    // @include transition(padding $transition-length ease-in-out);
+
   }
 
   @import 'arrow';
